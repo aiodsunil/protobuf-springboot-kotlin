@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package io.aiod.kafka;
+option java_outer_classname = "PersonProto";
+
+message Person{
+  int64 id = 1;
+  string name = 2;
+  int32 age = 3;
+}

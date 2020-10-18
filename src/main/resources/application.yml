@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: person-service
+  cloud:
+    stream:
+      kafka:
+        binder:
+          producer-properties:
+            schema:
+              registry:
+                    url: http://localhost:8081
+        bindings:
+          output:
+            producer:
+              configuration:
+                key:
+                  serializer: org.apache.kafka.common.serialization.IntegerSerializer
+                value:
+                    serializer: io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer
+
+      bindings:
+        output:
+          destination: test-1
+          contentType: application/x-protobuf
+      schema-registry-client:
+        endpoint: http://localhost:8081
+server:
+  port: 8888
